@@ -11,30 +11,6 @@ float imgroot1;
 float imgroot2;
 int event;
 
-void checkInput(float x) {
-    bool valid = false;
-    while (!valid)
-    {
-        valid = true;
-        std::cout << "Enter a: \n";
-        std::cin >> quadraticCoefficient;
-
-        if (std::cin.fail()) {
-            std::cin.clear();
-            std::cin.ignore();
-            std::cout << "ERROR input not valid \n";
-            std::cout << "\n";
-            valid = false;
-        }
-    }
-    
-}
-
-void discriminantCalculation(float x, float y, float z) {
-    discriminant = y*y-4*x*z;
-    std::cout << "Discriminant: " << discriminant << "\n" << "\n";
-}
-
 void startUp() {
     std::cout <<"                       _           _       "<< "\n";
     std::cout <<"                      | |         | |      "<< "\n";
@@ -80,6 +56,64 @@ void startUp() {
     std::cout << "Have fun calculating!\n" << "\n";
 }
 
+void checkInputA(float x) {
+    bool valid = false;
+    while (!valid)
+    {
+        valid = true;
+        std::cout << "Enter a: \n";
+        std::cin >> quadraticCoefficient;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore();
+            std::cout << "ERROR input not valid \n";
+            std::cout << "\n";
+            valid = false;
+        }
+    }
+    
+}
+
+void checkInputB(float x) {
+    bool valid = false;
+    while (!valid) {
+        valid = true;
+        std::cout << "Enter b: \n";
+        std::cin >> secondCoefficient;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore();
+            std::cout << "ERROR input not valid \n";
+            std::cout << "\n";
+            valid = false;
+        }
+    }
+}
+
+void checkInputC(float x) {
+    bool valid = false;
+    while (!valid) {
+        valid = true;
+        std::cout << "Enter c: \n";
+        std::cin >> constantCoefficient;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore();
+            std::cout << "ERROR input not valid \n";
+            std::cout << "\n";
+            valid = false;
+        }
+    }
+}
+
+void discriminantCalculation(float x, float y, float z) {
+    discriminant = y*y-4*x*z;
+    std::cout << "Discriminant: " << discriminant << "\n" << "\n";
+}
+
 void calculation(float x, float y, float z) {
     root1 = (-y+std::sqrt(y*y-4*x*z))/(2*x);
     root2 = (-y-std::sqrt(y*y-4*x*z))/(2*x);
@@ -113,11 +147,9 @@ void calculation(float x, float y, float z) {
 int main() {
 startUp();
     while(true){  
-        checkInput(quadraticCoefficient);
-        std::cout << "Enter b \n";
-        std::cin >> secondCoefficient ;
-        std::cout << "Enter c \n";
-        std::cin >> constantCoefficient ;
+        checkInputA(quadraticCoefficient);
+        checkInputB(secondCoefficient);
+        checkInputC(constantCoefficient);
         discriminantCalculation(quadraticCoefficient, secondCoefficient, constantCoefficient);
         calculation(quadraticCoefficient, secondCoefficient, constantCoefficient);
     }    
